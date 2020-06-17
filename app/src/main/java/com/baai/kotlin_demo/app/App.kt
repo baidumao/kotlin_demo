@@ -2,6 +2,8 @@ package com.baai.kotlin_demo.app
 
 import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDex
+import com.tencent.bugly.beta.Beta
 import kotlin.properties.Delegates
 
 class App : Application() {
@@ -15,5 +17,12 @@ class App : Application() {
         lateinit var instance:Application
 
 
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(base)
+        // 安装 Tinker
+        Beta.installTinker()
     }
 }
